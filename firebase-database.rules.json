@@ -1,0 +1,28 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && auth.uid === $uid",
+        ".write": "auth != null && auth.uid === $uid",
+        ".validate": "newData.hasChildren(['uid', 'username', 'createdAt', 'stats'])",
+        "uid": { ".validate": "newData.isString() && newData.val() === $uid" },
+        "username": { ".validate": "newData.isString() && newData.val().length >= 1 && newData.val().length <= 20" },
+        "email": { ".validate": "newData.isString() || newData.val() === null" },
+        "isAnonymous": { ".validate": "newData.isBoolean()" },
+        "createdAt": { ".validate": "newData.exists()" },
+        "lastSeenAt": { ".validate": "newData.exists()" },
+        "stats": {
+          ".validate": "newData.hasChildren(['gamesPlayed', 'wins', 'losses', 'totalPoints'])",
+          "gamesPlayed": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+          "wins": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+          "losses": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+          "totalPoints": { ".validate": "newData.isNumber() && newData.val() >= 0" },
+          "$other": { ".validate": false }
+        },
+        "$other": { ".validate": false }
+      }
+    }
+  }
+}

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080d18">
+<title>GameVerse Arcade</title>
+<style>
+:root{color-scheme:dark;--bg:#080d18;--panel:#101a2b;--panel2:#142238;--line:#263750;--text:#eef7ff;--muted:#91a4bd;--cyan:#36e0df;--blue:#668cff;--purple:#a779ff;--good:#65e6a5;--danger:#ff718b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#102b42 0,transparent 38%),radial-gradient(ellipse at 90% 15%,#251b48 0,transparent 32%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button,input{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}.shell{max-width:1440px;margin:auto;padding:24px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:34px}.brand{display:flex;align-items:center;gap:12px;font-weight:850;font-size:20px;letter-spacing:.02em}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--blue) 55%,var(--purple));display:grid;place-items:center;color:#06111b;font-weight:1000;box-shadow:0 8px 30px #36e0df33}.top-actions{display:flex;align-items:center;gap:12px}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 13px;color:var(--muted);font-size:13px}.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#36e0df,#a779ff);color:#07111c;font-weight:900}
+.hero{display:grid;grid-template-columns:1.35fr .65fr;gap:20px;margin-bottom:24px}.hero-main,.hero-side,.panel,.game-card{background:linear-gradient(145deg,#132238ed,#0e1727ed);border:1px solid #263b56;border-radius:24px;box-shadow:0 18px 55px #0003}.hero-main{padding:34px;position:relative;overflow:hidden}.hero-main:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;right:-70px;top:-110px;background:radial-gradient(circle,#36e0df38,transparent 68%)}.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.16em;font-weight:800;font-size:11px}.hero h1{font-size:clamp(32px,5vw,58px);line-height:1.05;margin:12px 0}.hero p{color:var(--muted);max-width:650px}.hero-side{padding:25px;display:flex;flex-direction:column;justify-content:space-between}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.stat{padding:15px;background:#0a1423;border:1px solid var(--line);border-radius:16px}.stat strong{font-size:25px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.btn{padding:11px 16px;border-radius:12px;background:linear-gradient(100deg,var(--cyan),#78a4ff);color:#06111b;font-weight:850;box-shadow:0 8px 25px #36e0df22}.btn.secondary{background:#17263b;color:var(--text);border:1px solid var(--line);box-shadow:none}.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);box-shadow:none}.btn:disabled{opacity:.45;cursor:not-allowed}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:30px 0 15px}.section-head h2{margin:0;font-size:23px}.section-head p{margin:3px 0 0;color:var(--muted);font-size:13px}.games{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.game-card{padding:19px;min-height:190px;display:flex;flex-direction:column;position:relative;overflow:hidden}.game-card:before{content:"";position:absolute;width:150px;height:150px;border-radius:50%;right:-55px;top:-55px;background:var(--glow,#36e0df);opacity:.11;filter:blur(3px)}.game-top{display:flex;justify-content:space-between;align-items:center}.game-icon{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;font-size:24px;background:#1b3048;border:1px solid #36506d}.tag{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);font-weight:800}.game-card h3{margin:15px 0 5px;font-size:17px}.game-card p{margin:0;color:var(--muted);font-size:13px;max-width:90%}.game-foot{margin-top:auto;padding-top:16px;display:flex;align-items:center;justify-content:space-between}.game-foot small{color:var(--muted)}.soon{font-size:11px;color:#c2b1ff;border:1px solid #5b4b86;padding:5px 8px;border-radius:99px}
+.lower{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}.panel{padding:21px}.panel h3{margin:0 0 13px}.empty{padding:20px;border:1px dashed #30445f;border-radius:15px;color:var(--muted);font-size:13px;text-align:center}.profile-row{display:flex;align-items:center;gap:12px}.profile-meta{min-width:0}.profile-meta strong{display:block}.profile-meta span{font-size:12px;color:var(--muted);overflow-wrap:anywhere}.notice{padding:12px 14px;border-radius:12px;background:#10283a;border:1px solid #1c5361;color:#b9f7f0;font-size:13px;margin-top:15px}.error{background:#351a2a;border-color:#71364c;color:#ffc2ce}.auth-wrap{min-height:100vh;display:grid;place-items:center;padding:20px}.auth-card{width:min(460px,100%);padding:30px;background:#101b2d;border:1px solid #2a405d;border-radius:24px;box-shadow:0 25px 90px #0007}.auth-card h1{margin:16px 0 5px;font-size:30px}.auth-card p{color:var(--muted);margin:0 0 22px}.field{display:block;margin:13px 0}.field span{display:block;font-size:12px;color:#b5c5d9;margin-bottom:6px}.field input{width:100%;padding:12px 13px;border-radius:11px;border:1px solid #30445f;background:#091321;color:var(--text);outline:none}.field input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #36e0df18}.auth-actions{display:grid;gap:10px;margin-top:18px}.auth-actions .btn{width:100%}.auth-note{font-size:11px!important;margin-top:17px!important}.footer{color:#667b95;font-size:11px;text-align:center;padding:35px 0 10px}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.games{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.shell{padding:15px}.topbar{margin-bottom:20px}.top-actions .pill{display:none}.hero-main{padding:24px}.games{grid-template-columns:1fr}.lower{grid-template-columns:1fr}.hero-side{gap:18px}.section-head{align-items:start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="authView" class="auth-wrap">
+  <main class="auth-card">
+    <div class="brand"><div class="logo">G</div><span>GAMEVERSE <span style="color:var(--cyan)">ARCADE</span></span></div>
+    <h1>Enter the arena.</h1>
+    <p>Sign in or create an account to access your GameVerse dashboard.</p>
+    <form id="authForm">
+      <label class="field"><span>Email address</span><input id="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+      <label class="field"><span>Password</span><input id="password" type="password" autocomplete="current-password" minlength="6" required placeholder="At least 6 characters"></label>
+      <div class="auth-actions">
+        <button class="btn" id="signInBtn" type="submit">Sign in</button>
+        <button class="btn secondary" id="signUpBtn" type="button">Create account</button>
+        <button class="btn ghost" id="guestBtn" type="button">Continue as guest</button>
+      </div>
+    </form>
+    <div id="authMessage" class="notice hidden" role="status"></div>
+    <p class="auth-note">Guest access uses Firebase Anonymous Authentication. Email accounts can sign in from another device.</p>
+  </main>
+</div>
+
+<div id="appView" class="shell hidden">
+  <header class="topbar">
+    <div class="brand"><div class="logo">G</div><span>GAMEVERSE <span style="color:var(--cyan)">ARCADE</span></span></div>
+    <div class="top-actions">
+      <span class="pill" id="connectionPill">Connecting…</span>
+      <div class="profile-row"><div class="avatar" id="avatar">P</div><div class="profile-meta"><strong id="topName">Player</strong><span id="topEmail">Guest account</span></div></div>
+      <button class="btn ghost" id="signOutBtn">Sign out</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">Your multiplayer universe</div>
+      <h1>Play together.<br><span style="color:var(--cyan)">Win together.</span></h1>
+      <p>One arcade, ten ways to challenge your friends. Your GameVerse home base is ready. Multiplayer rooms and game modules will be added in the next development phases.</p>
+      <button class="btn" id="browseBtn">Explore the games ↓</button>
+    </div>
+    <aside class="hero-side">
+      <div><div class="eyebrow">Player overview</div><h2 style="margin:8px 0 18px">Your stats</h2></div>
+      <div class="stat-grid">
+        <div class="stat"><strong id="gamesPlayed">0</strong><span>Games played</span></div>
+        <div class="stat"><strong id="wins">0</strong><span>Wins</span></div>
+        <div class="stat"><strong id="points">0</strong><span>Total points</span></div>
+        <div class="stat"><strong id="winRate">0%</strong><span>Win rate</span></div>
+      </div>
+      <div class="notice" id="profileStatus">Your profile is connected to Firebase.</div>
+    </aside>
+  </section>
+
+  <div class="section-head" id="gamesSection"><div><h2>Game library</h2><p>Choose your next challenge. Game modules unlock as development continues.</p></div><span class="pill">10 games planned</span></div>
+  <section class="games" id="gamesGrid"></section>
+
+  <section class="lower">
+    <div class="panel"><h3>Friends & invites</h3><div class="empty">Friend search and room invitations arrive in Phase 2.</div></div>
+    <div class="panel"><h3>Recent activity</h3><div class="empty">Your match history will appear here when game modules are connected.</div></div>
+  </section>
+  <div class="footer">GAMEVERSE ARCADE · Phase 1 foundation · Built with Firebase</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInAnonymously, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, ref, get, set, update, serverTimestamp, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+/*
+  FIREBASE SETUP:
+  1. In Firebase Console, enable Authentication > Email/Password and Anonymous.
+  2. Create a Realtime Database.
+  3. Copy its URL into databaseURL below. Example:
+     https://YOUR-PROJECT-default-rtdb.firebaseio.com
+     (Some regions use firebasedatabase.app.)
+  4. Add your GitHub Pages domain to Authentication > Settings > Authorized domains.
+  Firebase web config/API key identifies the project; database security is enforced by Rules.
+*/
+const firebaseConfig = {
+  apiKey: "AIzaSyAr_w80pwlNO040CffbsVR_OlJE64vW4zw",
+  authDomain: "gtx-games.firebaseapp.com",
+  databaseURL: "PASTE_YOUR_REALTIME_DATABASE_URL_HERE",
+  projectId: "gtx-games",
+  storageBucket: "gtx-games.firebasestorage.app",
+  messagingSenderId: "410719737336",
+  appId: "1:410719737336:web:8340d30d5cdb5aef8db20d",
+  measurementId: "G-P0KXEZCVZN"
+};
+
+const games = [
+  ["🕵️","Impostor – Find the Fake","Spot the player hiding behind a different secret word.","2–10 players","Social deduction"],
+  ["💣","Bomb Squad","Pass the ticking bomb before the timer runs out.","2–8 players","Party survival"],
+  ["🗺️","Territory Wars","Capture the board and outsmart your rivals.","2–4 players","Strategy"],
+  ["⌨️","Speed Typing Battle","Race your friends with speed and accuracy.","2–10 players","Skill"],
+  ["⚔️","Last One Standing","Survive the arena and be the final player alive.","4–10 players","Arena"],
+  ["🎨","Guess the Drawing","Draw clues while everyone races to guess the word.","2–10 players","Creative"],
+  ["🌙","Mafia – Online Edition","Use secret roles, discussion, and votes to survive.","5–15 players","Social deduction"],
+  ["🧠","Quiz Royale","Answer fast, score points, and top the leaderboard.","2–20 players","Trivia"],
+  ["⚡","Reaction Masters","Test your reflexes in synchronized reaction rounds.","2–10 players","Reflex"],
+  ["🕶️","Secret Agent","Find the spy before they uncover the secret location.","3–10 players","Bluffing"]
+];
+
+const $ = id => document.getElementById(id);
+let app, auth, db, profileListener = null;
+const setMessage = (message, isError=false) => {
+  const el=$("authMessage"); el.textContent=message; el.classList.remove("hidden","error"); if(isError)el.classList.add("error");
+};
+function renderGames(){
+  $("gamesGrid").replaceChildren();
+  games.forEach((g,i)=>{
+    const card=document.createElement("article"); card.className="game-card";
+    const top=document.createElement("div"); top.className="game-top";
+    const icon=document.createElement("div"); icon.className="game-icon"; icon.textContent=g[0];
+    const tag=document.createElement("span"); tag.className="tag"; tag.textContent=g[4];
+    top.append(icon,tag);
+    const title=document.createElement("h3"); title.textContent=g[1];
+    const desc=document.createElement("p"); desc.textContent=g[2];
+    const foot=document.createElement("div"); foot.className="game-foot";
+    const players=document.createElement("small"); players.textContent=g[3];
+    const status=document.createElement("span"); status.className="soon"; status.textContent="Coming in later phase";
+    foot.append(players,status); card.append(top,title,desc,foot); $("gamesGrid").append(card);
+  });
+}
+function safeError(error){
+  const map={
+    "auth/invalid-credential":"Email or password is incorrect.",
+    "auth/email-already-in-use":"This email is already registered. Try signing in.",
+    "auth/weak-password":"Choose a password with at least 6 characters.",
+    "auth/invalid-email":"Enter a valid email address.",
+    "auth/operation-not-allowed":"Enable this sign-in method in Firebase Authentication.",
+    "auth/network-request-failed":"Network error. Check your connection and try again."
+  };
+  return map[error?.code] || error?.message || "Something went wrong. Please try again.";
+}
+async function ensureProfile(user){
+  const userRef=ref(db,`users/${user.uid}`);
+  const snap=await get(userRef);
+  if(!snap.exists()){
+    const base=user.isAnonymous ? "Guest" : (user.email?.split("@")[0] || "Player");
+    await set(userRef,{
+      uid:user.uid, username:base.slice(0,20), email:user.isAnonymous?null:user.email,
+      isAnonymous:user.isAnonymous, createdAt:serverTimestamp(),
+      stats:{gamesPlayed:0,wins:0,losses:0,totalPoints:0}
+    });
+  } else {
+    await update(userRef,{lastSeenAt:serverTimestamp()});
+  }
+}
+function showApp(user){
+  $("authView").classList.add("hidden"); $("appView").classList.remove("hidden");
+  $("topEmail").textContent=user.isAnonymous?"Guest account":(user.email||"Signed in");
+  $("avatar").textContent=(user.email?.[0]||"G").toUpperCase();
+  $("connectionPill").textContent="Firebase connected";
+}
+function watchProfile(uid){
+  if(profileListener) profileListener();
+  profileListener=onValue(ref(db,`users/${uid}`),snap=>{
+    const p=snap.val()||{},s=p.stats||{};
+    const name=String(p.username||"Player").slice(0,20);
+    $("topName").textContent=name; $("avatar").textContent=name[0]?.toUpperCase()||"P";
+    $("gamesPlayed").textContent=Number(s.gamesPlayed)||0;
+    $("wins").textContent=Number(s.wins)||0;
+    $("points").textContent=Number(s.totalPoints)||0;
+    const played=Number(s.gamesPlayed)||0,w=Number(s.wins)||0;
+    $("winRate").textContent=played?Math.round(w/played*100)+"%":"0%";
+  },err=>{$("profileStatus").textContent="Profile read failed: "+safeError(err);});
+}
+async function init(){
+  if(!firebaseConfig.databaseURL || firebaseConfig.databaseURL.includes("PASTE_")){
+    $("connectionPill").textContent="Database URL needed";
+  }
+  app=initializeApp(firebaseConfig); auth=getAuth(app);
+  try{db=getDatabase(app);}catch(e){console.error(e);}
+  $("authForm").addEventListener("submit",async e=>{
+    e.preventDefault(); $("signInBtn").disabled=true;
+    try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);}
+    catch(err){setMessage(safeError(err),true);}finally{$("signInBtn").disabled=false;}
+  });
+  $("signUpBtn").addEventListener("click",async()=>{
+    $("signUpBtn").disabled=true;
+    try{await createUserWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);}
+    catch(err){setMessage(safeError(err),true);}finally{$("signUpBtn").disabled=false;}
+  });
+  $("guestBtn").addEventListener("click",async()=>{
+    $("guestBtn").disabled=true;
+    try{await signInAnonymously(auth);}catch(err){setMessage(safeError(err),true);}finally{$("guestBtn").disabled=false;}
+  });
+  $("signOutBtn").addEventListener("click",async()=>{try{await signOut(auth);}catch(e){alert(safeError(e));}});
+  $("browseBtn").addEventListener("click",()=>$("gamesSection").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
+  onAuthStateChanged(auth,async user=>{
+    if(!user){$("appView").classList.add("hidden");$("authView").classList.remove("hidden");if(profileListener){profileListener();profileListener=null;}return;}
+    try{
+      if(!db) throw new Error("Realtime Database could not initialize. Check databaseURL in the Firebase configuration.");
+      await ensureProfile(user); showApp(user); watchProfile(user.uid);
+      $("profileStatus").textContent="Profile synced with Firebase Realtime Database.";
+      $("connectionPill").textContent="Firebase connected";
+    }catch(err){
+      showApp(user); $("connectionPill").textContent="Setup required";
+      $("profileStatus").textContent=safeError(err);
+    }
+  });
+}
+renderGames();
+try{await init();}catch(err){setMessage("Firebase initialization failed: "+safeError(err),true);console.error(err);}
+</script>
+</body>
+</html>
